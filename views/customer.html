@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Home</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../js/cookie.js"></script>
     <script src="../js/customer.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 </head>
@@ -16,9 +17,15 @@
     <h1>Welcome Customer</h1>
     <div id="cartItem">
         <h3>Cart Items</h3>
-        <div id="cartContent">
-            
-        </div>
+        <table id="cartContent">
+            <tr>
+                <th>ProductName</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    
     </div>
     <div id="offers">
         
