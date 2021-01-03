@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="../js/cookie.js"></script>
     <script src="../js/products.js"></script>
@@ -25,6 +26,7 @@
             <th>Category</th>
             <th>Offer</th>
             <th>Image</th>
+            <th>Action</th>
         </tr>
         
     </table>
@@ -42,8 +44,28 @@
             <tr>
                 <td>Price</td>
                 <td>
-                    <input type="number" name="" id="">
+                    <input type="number" name="" id="price">
                 </td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td><input type="text" name="description" id="description"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td> <select name="" id="category">
+                    
+                </select></td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><input type="file" accept="image/*" name="" id="picture" enctype="multipart/form-data"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="add"></td>
+            </tr>
+            <tr>
+                <td id="errLog"></td>
             </tr>
         </table>
     </form>
