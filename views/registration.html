@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../js/registration.js"></script>
+</head>
+<body>
+    <form id="regform" action="" method="post">
+        <table style="text-align: left;">
+            <tr>
+                <th>Enter Username</th>
+                <td>
+                    <input type="text" name="username" id="username" placeholder="Enter Username">
+                </td>
+            </tr>
+            <tr>
+                <th>Enter Password</th>
+                <td>
+                    <input type="password" name="password" id="password" placeholder="Enter Password">
+                </td>
+            </tr>
+            <tr>
+                <th>Confirm Passowrd</th>
+                <td>
+                    <input type="password" name="cpassword" id="cpassword" placeholder="Retype Password">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Firstname
+                </th>
+                <td>
+                    <input type="text" name="firstname" id="firstname"  placeholder="Enter Firstname">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Lastname
+                </th>
+                <td>
+                    <input type="text" name="lastname" id="lastname" placeholder="Enter Lastname">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Gender
+                </th>
+                <td>
+                    <input type="radio" value="male" name="rbmale" id="rbmale">Male
+                </td>
+                <td>
+                    <input type="radio" value="female" name="rbfemale" id="rbfemale">Female
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Date Of Birth
+                </th>
+                <td>
+                    <input type="date" name="dateofbirth" id="dateofbirth">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Address
+                </th>
+                <td>
+                    <input type="text" name="address" id="address">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Registration">
+                </td>
+                <td>
+                    <a href="index.html">Already have an account ? Login Here</a>
+                </td>
+            </tr>
+            <tr>
+                <td id="errLog"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
