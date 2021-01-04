@@ -11,8 +11,8 @@ $(document).ready(function(){
            {
                 var sid = getCookie();
                 console.log(sid);
-                console.log(res.shipperId);
-                if(res.shipperId!=sid)
+                console.log(res.ShipperId);
+                if(res.ShipperId!=sid)
                 {
                     alert('Unauthorized');
                     window.location.href = "ShipperHome.html";
@@ -29,29 +29,29 @@ $(document).ready(function(){
                                 var count=0,ordermonth=0, orderyear=0, delmonth=0, delyear=0, mydel=0,otherdel=0;
                                 for (var i = 0; i < data.length; i++)
                                 {
-                                    dateOrdered = new Date(data[i].dateOrdered);
-                                    dateDelivered = new Date(data[i].dateDelivered);
-                                    if(dateOrdered.getMonth()==n && data[i].status!="Delivered")
+                                    dateOrdered = new Date(data[i].DateOrdered);
+                                    dateDelivered = new Date(data[i].DateDelivered);
+                                    if(dateOrdered.getMonth()==n && data[i].Status!="Delivered")
                                     {
                                         ordermonth++;
                                     }
-                                    if(dateOrdered.getFullYear()==y && data[i].status!="Delivered")
+                                    if(dateOrdered.getFullYear()==y && data[i].Status!="Delivered")
                                     {
                                         orderyear++;
                                     }
-                                    if(dateDelivered.getMonth()==n && data[i].dateDelivered!=null)
+                                    if(dateDelivered.getMonth()==n && data[i].DateDelivered!=null)
                                     {
                                         delmonth++;
                                     }
-                                    if(dateDelivered.getFullYear()==y && data[i].dateDelivered!=null)
+                                    if(dateDelivered.getFullYear()==y && data[i].DateDelivered!=null)
                                     {
                                         delyear++;
                                     }
-                                    if(data[i].shipperId==sid && data[i].status!="To Be Delivered")
+                                    if(data[i].ShipperId==sid && data[i].Status!="To Be Delivered")
                                     {
                                         mydel++;
                                     }
-                                    if(data[i].status!="To Be Delivered")
+                                    if(data[i].Status!="To Be Delivered")
                                     {
                                         count++;
                                     }

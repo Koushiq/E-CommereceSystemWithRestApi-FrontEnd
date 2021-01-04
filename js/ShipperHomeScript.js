@@ -12,8 +12,8 @@ $(document).ready(function(){
            {
                 var sid = getCookie();
                 console.log(sid);
-                console.log(res.shipperId);
-                if(res.shipperId!=sid)
+                console.log(res.ShipperId);
+                if(res.ShipperId!=sid)
                 {
                     alert('Unauthorized');
                     window.location.href = "ShipperHome.html";
@@ -25,6 +25,7 @@ $(document).ready(function(){
                             url:"http://localhost:3001/api/orders",
                             method: "GET",
                             complete: function(xmlhttp,status){
+                                console.log(xmlhttp);
                                 if(xmlhttp.status==200)
                                 {
                                     var data=xmlhttp.responseJSON;
@@ -32,17 +33,18 @@ $(document).ready(function(){
                                     var exp='';
                                     for (var i = 0; i < data.length; i++)
                                     {
-                                        if(data[i].status=="To Be Delivered")
+                                        if(data[i].Status=="To Be Delivered")
                                         {
+                                            console.log('i am here ');
                                             if(data[i].express=='1')
                                             {
-                                                exp="Yes"
+                                                exp="Yes";
                                             }
                                             else
                                             {
-                                                exp="No"
+                                                exp="No";
                                             }
-                                            str+="<tr><td>"+data[i].orderId+"</td><td>"+data[i].dateOrdered+"</td><td>"+data[i].status+"</td><td>"+exp+"</td><td>"+data[i].totalCost+"</td><td><a href="+"../view/CustomerDetails.html?id="+data[i].customerId+">Customer Info</a></td><td><button class="+"deliverbtn"+" id="+data[i].orderId+">Deliver This</button></td></tr>";
+                                            str+="<tr><td>"+data[i].OrderId+"</td><td>"+data[i].DateOrdered+"</td><td>"+data[i].Status+"</td><td>"+exp+"</td><td>"+data[i].TotalCost+"</td><td><a href="+"../views/CustomerDetails.html?id="+data[i].CustomerId+">Customer Info</a></td><td><button class="+"deliverbtn"+" id="+data[i].OrderId+">Deliver This</button></td></tr>";
                                         }
                                     }
                                     $("#orderList tbody").html(str);
@@ -74,11 +76,11 @@ $(document).ready(function(){
                                             method: "PUT",
                                             header:"Content-Type:application/json",
                                             data:{
-                                                    "TotalCost":order.totalCost,
-                                                    "Express":order.express,
+                                                    "TotalCost":order.TotalCost,
+                                                    "Express":order.Express,
                                                     "Status":"On the Way",
-                                                    "DateOrdered":order.dateOrdered,
-                                                    "CustomerId":order.customerId,
+                                                    "DateOrdered":order.DateOrdered,
+                                                    "CustomerId":order.CustomerId,
                                                     "ShipperId":sid
                                             },
                                             complete:function(xmlhttp,status){
@@ -119,9 +121,9 @@ $(document).ready(function(){
                                     {
                                         if(selected=="Orders on the way")
                                         {
-                                            if(data[i].status=="On the Way")
+                                            if(data[i].Status=="On the Way")
                                             {
-                                                if(data[i].express=='1')
+                                                if(data[i].Express=='1')
                                                 {
                                                     exp="Yes"
                                                 }
@@ -129,15 +131,15 @@ $(document).ready(function(){
                                                 {
                                                     exp="No"
                                                 }
-                                                str+="<tr><td>"+data[i].orderId+"</td><td>"+data[i].dateOrdered+"</td><td>"+data[i].status+"</td><td>"+exp+"</td><td>"+data[i].totalCost+"</td><td><a href="+"../view/CustomerDetails.html?id="+data[i].customerId+">Customer Info</a></td><td>N/A</td></tr>";
+                                                str+="<tr><td>"+data[i].OrderId+"</td><td>"+data[i].DateOrdered+"</td><td>"+data[i].Status+"</td><td>"+exp+"</td><td>"+data[i].TotalCost+"</td><td><a href="+"../views/CustomerDetails.html?id="+data[i].CustomerId+">Customer Info</a></td><td>N/A</td></tr>";
                                             }
                                             $("#tableHeader").html("Orders on the way");
                                         }
                                         else if(selected=="Orders Delivered")
                                         {
-                                            if(data[i].status=="Delivered")
+                                            if(data[i].Status=="Delivered")
                                             {
-                                                if(data[i].express=='1')
+                                                if(data[i].Express=='1')
                                                 {
                                                     exp="Yes"
                                                 }
@@ -145,15 +147,15 @@ $(document).ready(function(){
                                                 {
                                                     exp="No"
                                                 }
-                                                    str+="<tr><td>"+data[i].orderId+"</td><td>"+data[i].dateOrdered+"</td><td>"+data[i].status+"</td><td>"+exp+"</td><td>"+data[i].totalCost+"</td><td><a href="+"../view/CustomerDetails.html?id="+data[i].customerId+">Customer Info</a></td><td>N/A</td></tr>";
+                                                    str+="<tr><td>"+data[i].OrderId+"</td><td>"+data[i].DateOrdered+"</td><td>"+data[i].Status+"</td><td>"+exp+"</td><td>"+data[i].TotalCost+"</td><td><a href="+"../views/CustomerDetails.html?id="+data[i].CustomerId+">Customer Info</a></td><td>N/A</td></tr>";
                                             }
                                             $("#tableHeader").html("Orders Delivered");
                                         }
                                         else if(selected=="My Deliveries")
                                         {
-                                            if(data[i].shipperId==sid && data[i].status=="On the Way")
+                                            if(data[i].ShipperId==sid && data[i].Status=="On the Way")
                                             {
-                                                if(data[i].express=='1')
+                                                if(data[i].Express=='1')
                                                 {
                                                     exp="Yes"
                                                 }
@@ -161,15 +163,15 @@ $(document).ready(function(){
                                                 {
                                                     exp="No"
                                                 }
-                                                str+="<tr><td>"+data[i].orderId+"</td><td>"+data[i].dateOrdered+"</td><td>"+data[i].status+"</td><td>"+exp+"</td><td>"+data[i].totalCost+"</td><td><a href="+"../view/CustomerDetails.html?id="+data[i].customerId+">Customer Info</a></td><td><button class="+"deliverydonebtn"+" id="+data[i].orderId+">Confirm Delivery</button></td></tr>";
+                                                str+="<tr><td>"+data[i].OrderId+"</td><td>"+data[i].DateOrdered+"</td><td>"+data[i].Status+"</td><td>"+exp+"</td><td>"+data[i].TotalCost+"</td><td><a href="+"../views/CustomerDetails.html?id="+data[i].CustomerId+">Customer Info</a></td><td><button class="+"deliverydonebtn"+" id="+data[i].OrderId+">Confirm Delivery</button></td></tr>";
                                             }
                                             $("#tableHeader").html("My Deliveries");
                                         }
                                         else if(selected=="Pending Express Orders")
                                         {
-                                            if(data[i].status=="To Be Delivered" && data[i].express == '1')
+                                            if(data[i].Status=="To Be Delivered" && data[i].Express == '1')
                                             {
-                                                if(data[i].express=='1')
+                                                if(data[i].Express=='1')
                                                 {
                                                     exp="Yes"
                                                 }
@@ -177,7 +179,7 @@ $(document).ready(function(){
                                                 {
                                                     exp="No"
                                                 }
-                                                str+="<tr><td>"+data[i].orderId+"</td><td>"+data[i].dateOrdered+"</td><td>"+data[i].status+"</td><td>"+exp+"</td><td>"+data[i].totalCost+"</td><td><a href="+"../view/CustomerDetails.html?id="+data[i].customerId+">Customer Info</a></td><td><button class="+"deliverbtn"+" id="+data[i].orderId+">Deliver This</button></td></tr>";
+                                                str+="<tr><td>"+data[i].OrderId+"</td><td>"+data[i].DateOrdered+"</td><td>"+data[i].Status+"</td><td>"+exp+"</td><td>"+data[i].TotalCost+"</td><td><a href="+"../views/CustomerDetails.html?id="+data[i].CustomerId+">Customer Info</a></td><td><button class="+"deliverbtn"+" id="+data[i].OrderId+">Deliver This</button></td></tr>";
                                             }
                                             $("#tableHeader").html("Pending Express Orders");
                                         }
@@ -201,13 +203,13 @@ $(document).ready(function(){
                                                         method: "PUT",
                                                         header:"Content-Type:application/json",
                                                         data:{
-                                                                "TotalCost":order.totalCost,
-                                                                "Express":order.express,
+                                                                "TotalCost":order.TotalCost,
+                                                                "Express":order.Express,
                                                                 "Status":"Delivered",
-                                                                "DateOrdered":order.dateOrdered,
+                                                                "DateOrdered":order.DateOrdered,
                                                                 "DateDelivered":date,
-                                                                "CustomerId":order.customerId,
-                                                                "ShipperId":order.shipperId
+                                                                "CustomerId":order.CustomerId,
+                                                                "ShipperId":order.ShipperId
                                                         },
                                                         complete:function(xmlhttp,status){
                                                             if(xmlhttp.status==200)
@@ -259,13 +261,13 @@ $(document).ready(function(){
            }
            else
            {
-               alert('Unauthorized');
+               alert('Unauthorized xx ');
                window.location.href = "ShipperHome.html";
            }
         },
         error:function(res)
         {
-            alert('Unauthorized');
+            alert('Unauthorized  zzz');
             window.location.href = "ShipperHome.html";
         }
     });

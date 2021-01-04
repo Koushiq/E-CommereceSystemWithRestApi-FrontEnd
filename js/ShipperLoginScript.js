@@ -19,10 +19,12 @@ $(document).ready(function(){
                      "Password":User.password
                  },
                  success: function(res) {
+                     console.log(res);
                     if(res!=undefined)
                     {
-                        console.log(res.shipperId);
-                        setCookie(res.shipperId,10);
+                        console.log(res.ShipperId);
+                        alert(res.ShipperId);
+                        setCookie(res.ShipperId,10);
                         window.location.href = "ShipperHome.html";
                         
                     }

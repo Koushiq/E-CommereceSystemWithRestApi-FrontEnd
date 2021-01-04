@@ -24,8 +24,8 @@ $(document).ready(function(){
            {
                 var sid = getCookie();
                 console.log(sid);
-                console.log(res.shipperId);
-                if(res.shipperId!=sid)
+                console.log(res.ShipperId);
+                if(res.ShipperId!=sid)
                 {
                     alert('Unauthorized');
                     window.location.href = "ShipperHome.html";
@@ -37,14 +37,14 @@ $(document).ready(function(){
                         console.log(customerId);
 
                         $.ajax({
-                            url:"http://localhost:3001/api/customers/"+customerId,
+                            url:"http://localhost:3001/api/customers/info/"+customerId,
                             method: "GET",
                             complete: function(xmlhttp,status){
                                 if(xmlhttp.status==200)
                                 {
                                     var data=xmlhttp.responseJSON;
                                     var str='';
-                                    str+="<tr><td><b>Username: </b></td><td>"+data.username+"</td></tr><tr><td><b>Name</b></td><td>"+(data.firstName+" "+data.lastname)+"</td></tr><tr><td><b>Address: </b></td><td>"+data.address+"</td></tr>";
+                                    str+="<tr><td><b>Username: </b></td><td>"+data.Username+"</td></tr><tr><td><b>Name</b></td><td>"+(data.FirstName+" "+data.Lastname)+"</td></tr><tr><td><b>Address: </b></td><td>"+data.Address+"</td></tr>";
                                     $("#customerInfo").html(str);
                                 }
                                 else
