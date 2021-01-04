@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Shipper Home Page</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="../js/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="../js/ShipperHomeScript.js"></script>
+        <script type="text/javascript" src="../js/cookie.js"></script>
+    </head>
+    <body>
+        <center><h2>Shipper Home Page</h2></center>
+        <hr>
+        <select id="selectList">
+            <option>Pending Orders</option>
+            <option>Pending Express Orders</option>
+            <option>Orders on the way</option>
+            <option>Orders Delivered</option>
+            <option>My Deliveries</option>
+        </select> | 
+        <a href="OrderStats.html">Stats Page</a> | 
+        <a href="ShipperLogout.html">Logout</a>
+        <center>
+            <h3 id="tableHeader">Pending Orders</h3>
+            <table id="orderList" border="1" width="800px" style="text-align: center;">
+                <thead>
+                    <th>Order #</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Express</th>
+                    <th>Total Cost</th>
+                    <th>Customer Info</th>
+                    <th>Action</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="msg" style="color: red;"></p>
+        </center>
+    </body>
+</html>

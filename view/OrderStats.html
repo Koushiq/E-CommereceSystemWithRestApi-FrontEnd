@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Statistics Page</title>
+        <meta charset="utf-8">
+        <script type="text/javascript" src="../js/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="../js/OrderStatsScript.js"></script>
+        <script type="text/javascript" src="../js/cookie.js"></script>
+        <script type="module">
+            import 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js'
+        </script>
+    </head>
+    <body>
+        <center><h2>Statistics</h2></center>
+        <hr>
+        <a href="ShipperHome.html">Back</a> | 
+        <a href="ShipperLogout.html">Logout</a>
+        <center>
+            <br>
+            <br>
+            <br>
+            <br>
+            <table style="width: 800px;">
+                <tr>
+                    <td>
+                        <div style="width: 400px; height: 400px; padding-bottom: 20px;">
+                            <canvas id="myChart" width="100px" height="100px"></canvas>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="width: 380px; height: 380px; padding-bottom: 30px;">
+                            <canvas id="myChart2" width="100px" height="100px"></canvas>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><center>Orders and Delivery Stats</center></td>
+                    <td><center>My Shipments VS Others Shipments</center></td>
+                </tr>
+            </table>
+            <p id="msg" style="color: red;"></p>
+        </center>
+    </body>
+</html>
