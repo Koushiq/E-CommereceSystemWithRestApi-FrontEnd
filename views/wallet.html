@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Admin</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/wallet.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body style="margin: auto; text-align: center;">
+    <div class="navbar-brand">
+        <a href="logout.html">Logout</a> | 
+        <a href="admin.html">Home</a> |
+        <a href="products.html">Products</a> | 
+        <a href="superadmin.html">Super Admin Privilages</a> | 
+        <a href="general.html">General Stats</a> | 
+        <a href="discount.html">Discounts</a> | 
+        <a href="wallet.html">Wallet Management</a>
+    </div>
+    <h1 id="welcomeMessage">Welcome Wallet Admin</h1>
+    <div id="pendingWalletRechargeRequests">
+        <h3>Pending Wallet Recharge Requests</h3>
+        <table id="pendingWalletRechargeContents" class="table table-striped">
+            <tr>
+                <th>S/N</th>
+                <th>Recharge Request ID</th>
+                <th>Customer ID</th>
+                <th>Amount</th>
+                <th>Requested At</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <div id="previousWalletRechargeRequests">
+        <h3>Pending Wallet Recharge Requests</h3>
+        <table id="previousWalletRechargeContents" class="table table-striped">
+            <tr>
+                <th>S/N</th>
+                <th>Recharge Request ID</th>
+                <th>Customer ID</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Requested At</th>
+                <th>Reviewed At</th>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
