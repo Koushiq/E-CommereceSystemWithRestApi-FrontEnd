@@ -53,9 +53,9 @@ $(document).ready(function(){
         url:"http://localhost:3001/api/walletentry",
         method:"GET",
         success:function(data){ 
-            console.log(data);
-            for(let i=0;i<data.lengthl;i++)
+            for(let i=0;i<data.length;i++)
             {
+                console.log(data[i].Status);
                 if(data[i].Status=="Approved")
                 {
                     sumCost+=data[i].Amount;
@@ -70,7 +70,7 @@ $(document).ready(function(){
                     {
                         sumIncome+=data[i].TotalCost;
                     }
-
+                    
                     donut(sumIncome,sumCost);
                 }
             });

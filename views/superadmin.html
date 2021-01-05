@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Privileges</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.js"></script>
+    <script src="../js/cookie.js"></script>
+    <script src="../js/validateCookie.js"></script>
+    <script src="../js/superadmin.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+
+<body style="margin: auto; text-align: center;">
+    <div class="navbar-brand">
+        <a href="logout.html">Logout</a> |
+        <a href="admin.html">Home</a> |
+        <a href="products.html">Products</a> |
+        <a href="superadmin.html">Super Admin Privilages</a> |
+        <a href="general.html">General Stats</a> |
+        <a href="discount.html">Discounts</a> |
+        <a href="wallet.html">Wallet Management</a>
+    </div>
+    <h1 id="welcomeMessage">Welcome Super Admin</h1>
+    <div id="AdminRegistrationDiv" style="display: none;">
+        <table class="table table-striped">
+            <form action="" method="POST" id="registrationForm" class="form-group">
+                <tr>
+                    <td><input type="text" name="Username" placeholder="Username"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="Password" placeholder="Password"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="FirstName" placeholder="First Name"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="LastName" placeholder="Last Name"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="Register" id="registerSubmitBtn" class="btn-success"></td>
+                </tr>
+            </form>
+        </table>
+    </div>
+    <button id="RegisterNewAdminBtn" class="btn-success">Register New Admin</button>
+    <br><br>
+    <div id="ShowAllAdminsDiv" style="display: none;">
+        <table id="ShowAllAdminsTable" class="table table-striped">
+        </table>
+    </div>
+    <button id="showAllAdminsBtn" class="btn-primary">Show All Admins</button>
+</body>
+
+</html>

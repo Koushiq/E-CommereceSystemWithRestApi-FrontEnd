@@ -1,85 +1,72 @@
-let date = new Date().toISOString().
-  replace(/T/, ' ').      
-  replace(/\..+/, '') ;
-
-
 $(document).ready(function(){
-    let userData = null;
+    let walletData = null;
     $.ajax({
-        url:"http://localhost:3001/api/customers/balance/"+getCookie(),
+        url:"http://localhost:3001/api/WalletEntry",
         method:"GET",
-        success:function(response){
-            userData=response;
-            console.log(userData);
-
-            $.ajax({
-                url:"http://localhost:3001/api/walletentry/getinfo/"+userData[0].CustomerId,
-                method:"GET",
-                success:function(responseServer)
-                {
-                    console.log(responseServer);
-                    let str=``;
-                    for(let i=0;i<responseServer.length;i++)
-                    {
-                        str+=`<tr><td>`+responseServer[i].Amount+`</td><td>`+responseServer[i].Status+`</td><td>`+responseServer[i].RequestedAt+`</td>`;
-                        if(responseServer[i].ActionAt!=undefined)
-                        {
-                            str+=`<td>`+responseServer[i].ActionAt+`</td></tr>`;
-                        }
-                        else
-                        {
-                            str+=`<td>No Action Yet </td></tr>`;
-                        }
-                    }
-                    $("#rechargelog").append(str);
-                },
-                failed:function(){
-                    alert('not found ');
-                }
-            });
-
-        }
-    });
-    
-    $('form').submit(function(e){
-        e.preventDefault();
-        let amount = $("#amount").val();
-        // validation
-        let regExp = /[a-zA-Z]/g;
-        if(amount<1)
-        {
-            alert('amount cannot be zero empty or negative');
-        }
-        else if(regExp.test(amount))
-        {
-            alert('invalid data format');
-        }
-        else
-        {
+        success:function(data)
+        {   
+            walletData=data;
             
-          
-           $.ajax({
-                url:"http://localhost:3001/api/walletentry",
-                method:"POST",
-                data:{
-                    "CustomerId":userData[0].CustomerId,
-                    "Amount":amount,
-                    "RequestedAt":date,
-                    "Status":"Pending",
-                },
-                success:function(response)
+            for(let i=0;i<data.length;i++)
+            {
+                var tableRow = `<td>`+data[i].WalletEntryId+`</td><td>`+data[i].CustomerId+`</td><td>`+data[i].Amount+`</td>`;
+                var serial = `<td>`+(i+1)+`</td>`;
+                var requestedAt = `<td>`+(new Date(data[i].RequestedAt)).toLocaleString()+`</td>`;
+                if(data[i].Status == "Pending")
                 {
-                    alert('Successfully Requested');
-                    window.location.href="wallet.html";
-                },
-                failed:function()
-                {
-                    alert('Not Successfully Requested');
+                    var approveBtn = `<td id = "row_`+data[i].WalletEntryId+`"><button class = "btn-success" id="approve_`+data[i].WalletEntryId+`">Approve</button> `;
+                    var rejectBtn = `<button class = "btn-danger" id="reject_`+data[i].WalletEntryId+`">Reject</button></td>`;
+                    $("#pendingWalletRechargeContents").append("<tr>" + serial + tableRow + requestedAt + approveBtn + rejectBtn + "</tr>");
+                    $("#approve_"+data[i].WalletEntryId).click(function() {
+                        ApproveWalletRequest(data[i].WalletEntryId);
+                    });
+                    $("#reject_"+data[i].WalletEntryId).click(function() {
+                        RejectWalletRequest(data[i].WalletEntryId);
+                    });
                 }
-            });
+                else
+                {
+                    var reviewedAt = `<td>`+(new Date(data[i].ActionAt)).toLocaleString()+`</td>`;
+                    var status = `<td>` + data[i].Status + `</td>`;
+                    $("#previousWalletRechargeContents").append("<tr>" + serial + tableRow + status + requestedAt + reviewedAt + "</tr>");
+                }
+            }
+        },
+        failure:function()
+        {
+            alert('failed to view wallet entries');
         }
-
-
-
     });
 });
+
+function ApproveWalletRequest(walletEntryId) 
+{
+    $.ajax({
+        url:"http://localhost:3001/api/walletentry/approve/"+walletEntryId,
+        method:"GET",
+        success:function(data)
+        {   
+            $("#row_"+walletEntryId).html("Approved");
+        },
+        failure:function()
+        {
+            alert('failed to view wallet entries');
+        }
+    });
+}
+
+function RejectWalletRequest(walletEntryId) 
+{
+    $.ajax({
+        url:"http://localhost:3001/api/walletentry/reject/"+walletEntryId,
+        method:"GET",
+        success:function(data)
+        {   
+            $("#row_"+walletEntryId).html("Rejected");
+        },
+        failure:function()
+        {
+            alert('failed to view wallet entries');
+        }
+    });
+}
